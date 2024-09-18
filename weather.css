@@ -1,0 +1,220 @@
+
+
+body{
+
+    background: rgb(4,96,65);
+    background-image: url("https://images.designtrends.com/wp-content/uploads/2016/04/02133843/Beautiful-Horizon-Background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    
+
+}
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.main_container{
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0px auto;
+    padding: 2rem;
+    
+}
+.heading{
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    
+}
+.tab_container{
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+    gap: 5rem;
+    margin: 1rem 0 0 0;
+}
+.tab{
+    padding: 0.2rem;
+    cursor: pointer;
+}
+.weather-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem 0;
+}
+.current_tab{
+    background-color: rgb(0, 252, 168);
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    padding: 0.2rem;
+}
+.grant_loction_container{
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 0.1rem;
+    margin-top: 3rem;
+    display: none;
+}
+.grant_loction_container img{
+    background: rgb(40, 226, 164);
+    border-radius: 50%;
+    padding: 1rem;
+}
+.grant_loction_container.active{
+    display: flex;
+}
+.grant_location_access{
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+.form_container{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 0 0.4rem ;
+    width: 100%;
+}
+.form_container input{
+    all: unset;
+    background: transparent;
+    width: 100%;
+    padding: 0.3rem 0.5rem;
+    color: aqua;
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
+}
+.form_container input:focus{
+    background-color: rgb(40, 226, 164);
+    border: 2px solid lightgray ;
+    box-shadow: 0px 1px 10px 0 white;
+    color: white;
+}
+.form_container input::placeholder{
+    color: aqua;
+}
+.form_container input:focus::placeholder{
+    color: white;
+}
+.form_container .btn{
+    margin-top: 0px;
+    background-color: rgb(40, 226, 164);
+    border-radius: 100%;
+    border: 2px solid rgb(40, 226, 164);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.form_container .btn:hover{
+    border: 2px solid lightgray;
+    box-shadow: 0 2px 10px 0 white;
+}
+.form_container.active{
+    display: flex;
+}
+.Allow_access_to_get_weather_information{
+    font-size: small;
+}
+.btn{
+    text-align: center;
+    font-size: medium;
+    padding: 0.3em 0.5rem;
+    background: transparent;
+    color: rgb(2, 182, 122);
+    margin-top: 1rem;
+    font-weight: bold;
+}
+.btn:hover{
+    background-color: rgb(0, 252, 168) ;
+    color: black;
+    outline: none;
+    border: 2px solid green;
+}
+.loading_container{
+    font-weight: bold;
+    font-size: larger;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+    display: none;
+}
+.loading_container img{
+    border-radius: 50%;
+}
+.loading_container.active{
+    display: flex;
+}
+.user_info_container{
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    display: none;
+}
+.name{
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    justify-content: center;
+}
+.name img{
+    height: 1.5rem;
+    width: 1.5rem;
+}
+.weather_type{
+    color: white;
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+}
+.data_tempr{
+    margin-top: 0.2rem;
+    font-size: 1.8rem;
+    font-weight: bolder;
+
+}
+.user_info_container.active{
+    display: flex;
+}
+.wetaher_parameter_card{
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    
+}
+.parameter_weather{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: center;
+    border-radius: 0.2rem;
+    width: 5rem;
+    background: rgb(40, 226, 164);
+    padding: 0.5rem;
+}
+.parameter_value{
+    color: red;
+    font-weight: bold;
+}
+.active{
+    bacground: rgb(0, 252, 168);
+    
+}
+.weather_para-img{
+    height: 50px;
+    width: 50px;
+}
