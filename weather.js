@@ -1,31 +1,4 @@
 
-
-// async function getWeather () {
-
-// const { json } = require("stream/consumers");
-
-//const { error } = require("console");
-
-// // const { json } = require("stream/consumers");
-//     const APIkey = "cbca0b0f288c40409b4102552241409";
-//     const lat = 22.4567;
-//     const lon = 2.5647;
-    
-//     const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${APIkey}&q=${lat,lon}&aqi=yes`) ;
-//     let data =await response.json(); 
-//     console.log("Weather data", (data?.current?.condition?.text));
-//     console.log(src=`https://flagcdn.com/144x108/${location?.country.lowercase()}.png `);
-    
-   
-//     let newpara = document.querySelector("p");
-//     newpara.textContent = (data.location.lon);
-
-// }
-// getWeather();
-
-// https://api.weatherapi.com/v1/current.json?key=66a0e66ad28b4d7c940122635240509&q=Kalyan&aqi=no
-
-
 const userTab = document.querySelector("[data-Userweather]");
 const searchTab = document.querySelector("[data-Searchweather]");
 const userContainer = document.querySelector(".weather-container");
@@ -96,26 +69,30 @@ async function fetchUserWeatherInfo(cordi) {
     }
 }
 
-// async function fetchCountryFlag(weatherInfo) {
-    
-//     try {
-//         const countryResponse = await fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(weatherInfo?.location?.country)}`);
-//         if (!countryResponse.ok) {
-//             throw new Error('Country not found');
-//         }
-//         let countryData = await countryResponse.json();
-//         const flagUrl = `https://flagsapi.com/${countryData[0]?.cca2}/flat/64.png`;
-//         return flagUrl;
-//     } catch (err) {
-//         console.error('Error fetching flag image:', err);
-//         // Hide loading screen and show error message
+async function fetchCountryFlag(countryName) {
+    try {
+        const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
+        const data = await response.json();
         
-//         return null;
-//     }
-// }
+        // Ensure that data is not empty and contains the expected properties
+        if (data && data.length > 0) {
+            const cca2 = data[0].cca2; 
+            const flagUrl = `https://flagsapi.com/${cca2}/flat/64.png`;
+            console.log(flagUrl); 
+            return flagUrl;
+        } else {
+            console.log('No data found for the specified country.');
+        }
+    } catch (err) {
+        console.error('Error fetching flag image:', err);
+    }
+}
 
 
-function renderWeatherInfo(weatherInfo){
+
+
+
+async function renderWeatherInfo(weatherInfo) {
     const cityName = document.querySelector(".city_name");
     const countryIcon = document.querySelector("[data_countryIcon]");
     const desc = document.querySelector(".weather_type");
@@ -124,16 +101,23 @@ function renderWeatherInfo(weatherInfo){
     const windSpeed = document.querySelector("[wind_speed]");
     const humidity = document.querySelector("[humidity_para]");
     const cloudiness = document.querySelector("[cloud_para]");
-
+    
+    const countryName = weatherInfo?.location?.country;
+    console.log(countryName);
+    
     cityName.innerText = weatherInfo?.location?.name;
-    countryIcon.src = "https://flagsapi.com/IN/shiny/64.png";
     desc.innerText = weatherInfo?.current?.condition?.text;
     weatherIcon.src = `${weatherInfo?.current?.condition?.icon}`;
-    temp.innerText = `${weatherInfo?.current?.temp_c}` + "℃";
-    windSpeed.innerText = `${weatherInfo?.current?.wind_kph}` + "KPH";
-    humidity.innerText = `${weatherInfo?.current?.humidity}` + "%";
-    cloudiness.innerText = `${weatherInfo?.current?.cloud}` + "%";
+    temp.innerText = `${weatherInfo?.current?.temp_c}℃`;
+    windSpeed.innerText = `${weatherInfo?.current?.wind_kph} KPH`;
+    humidity.innerText = `${weatherInfo?.current?.humidity}%`;
+    cloudiness.innerText = `${weatherInfo?.current?.cloud}%`;
 
+    // Fetch the country flag
+    if (countryName) {
+        const flagUrl = await fetchCountryFlag(countryName);
+        countryIcon.src = flagUrl;
+    }
 }
 
 
